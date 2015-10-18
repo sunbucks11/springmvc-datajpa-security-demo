@@ -21,7 +21,9 @@
 		<jackson-json.version>2.3.1</jackson-json.version>
 		<commons-dbcp.version>1.2.2</commons-dbcp.version>
 		<commons-lang3.version>3.1</commons-lang3.version>
+
 		<apache.tiles>3.0.3</apache.tiles>	
+
 	</properties>
 
 
@@ -209,7 +211,6 @@
 		
 		
 		
-		
 		<!-- ################################## -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
@@ -299,9 +300,6 @@
 		</dependency>
 		<!-- ################################## -->
 	</dependencies>
-	
-	
-
 
 	<dependencyManagement>
 		<dependencies>

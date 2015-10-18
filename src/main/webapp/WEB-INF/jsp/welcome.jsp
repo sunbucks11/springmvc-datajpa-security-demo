@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="com.java.blog.web.controllers.UserController"%>
+
 <%@include file="taglib.jsp"%>
 <html>
 <head>
