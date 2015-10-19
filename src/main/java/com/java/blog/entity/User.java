@@ -4,7 +4,9 @@
 package com.java.blog.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,13 +16,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import com.java.blog.annotation.UniqueUsername;
+
 
 @Entity
 @Table(name="USERS")
@@ -41,15 +42,14 @@ public class User
 	@Size(min=5, message="Password must be at least 5 characters!")
 	private String password;
 	
-	//@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="user_id")
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinTable
-	//private Set<Role> roles = new HashSet<>();
-	private List<Role> roles;
+	private Set<Role> roles = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Blog> blogs;
+	
+	
 		
 	private Date dob;
 	
@@ -152,25 +152,14 @@ public class User
 		this.dob = dob;
 	}
 
-/*	public Set<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
-	}*/
-	
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
-	}
-	
-	
-	
-	
 	public String getSecretKey() {
 		return secretKey;
 	}
@@ -187,6 +176,7 @@ public class User
 		this.twoFactorAuthInitialised = twoFactorAuthInitialised;
 	}
 	
+
 	public List<Blog> getBlogs() {
 		return blogs;
 	}
@@ -202,5 +192,4 @@ public class User
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
 }

@@ -22,6 +22,8 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
+import com.java.blog.web.controllers.AdminFilter;
+
 /**
  * @author Semir
  * 
@@ -40,8 +42,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter
 		registry.addViewController("welcome").setViewName("welcome");
 		registry.addViewController("admin").setViewName("admin");
 	}
-	
-	
 	
 	
     @Bean
@@ -106,4 +106,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter
 		b.setExceptionMappings(mappings);
 		return b;
 	}
+	
+	@Bean
+	public AdminFilter adminFilter() {
+		return new AdminFilter();
+	}
+
 }

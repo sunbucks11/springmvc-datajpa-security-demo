@@ -3,8 +3,7 @@
  */
 package com.java.blog.config;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -40,6 +39,7 @@ public class UserServiceTest
 		User user = userService.findUserById(1);
 		assertNotNull(user);
 	}
+	
 	
 	/*
 	@Test

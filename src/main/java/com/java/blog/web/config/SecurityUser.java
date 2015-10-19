@@ -5,7 +5,7 @@ package com.java.blog.web.config;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -39,15 +39,15 @@ public class SecurityUser extends User implements UserDetails
 		
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
 		
-		//Set<Role> userRoles = this.getRoles();
+		Set<Role> userRoles = this.getRoles();
 		
-		List<Role> userRoles = this.getRoles();
+		//List<Role> userRoles = this.getRoles();
 		
 		if(userRoles != null)
 		{
 			for (Role role : userRoles) {
-				//SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
-				SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
+				SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
+				//SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
 				authorities.add(authority);
 			}
 		}

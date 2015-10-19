@@ -4,7 +4,9 @@
 package com.java.blog.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -23,10 +25,7 @@ import com.java.blog.repository.RoleRepository;
 import com.java.blog.repository.UserRepository;
 
 
-/**
- * @author Siva
- *
- */
+
 @Service
 @Transactional
 public class UserService 
@@ -99,7 +98,8 @@ public class UserService
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
 
-		List<Role> roles = new ArrayList<Role>();
+		//List<Role> roles = new ArrayList<Role>();
+		Set<Role> roles = new HashSet<>();
 		//roles.add(roleRepository.findByName("ROLE_USER"));
 		//roles.add(roleRepository.findOne("ROLE_USER"));
 		user.setRoles(roles);

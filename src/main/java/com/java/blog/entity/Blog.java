@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
-public class Blog {
+ public class Blog {
 	
 	@Id
 	@GeneratedValue
@@ -31,7 +31,7 @@ public class Blog {
 	
 	@OneToMany(mappedBy="blog", cascade=CascadeType.REMOVE)
 	private List<Item> items;
-		
+	
 	public User getUser() {
 		return user;
 	}
@@ -47,7 +47,7 @@ public class Blog {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
-
+	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user; 

@@ -9,3 +9,9 @@ INSERT INTO roles (role_id,role_name,user_id) VALUES
  (1,'ROLE_ADMIN',1),
  (2,'ROLE_USER',1),
  (3,'ROLE_USER',2);
+ 
+ 
+ 
+
+INSERT INTO users (id,dob,email,enabled,isAuthenticated,isResetTwoFactorAuth,isVerified,isVerifiedError,name,password,secretKey,twoFactorAuthInitialised) VALUES 
+(1,NULL,'admin@gmail.com',false,false,false,false,false,'Administrator','admin123',NULL,false);

@@ -1,7 +1,7 @@
 package com.java.blog.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -37,13 +37,13 @@ public class InitDbService {
 		if (roleRepository.findOne(3) == null) {
 			Role roleUser = new Role();
 			//roleUser.setName("ROLE_USER");
-			roleUser.setName("ROLE_USER");
+			roleUser.setRoleName("ROLE_USER");
 			roleRepository.save(roleUser);
 
 		
 			Role roleAdmin = new Role();
-			roleAdmin.setName("ROLE_ADMIN");
-			//roleAdmin.setRoleName("ROLE_ADMIN");
+			//roleAdmin.setName("ROLE_ADMIN");
+			roleAdmin.setRoleName("ROLE_ADMIN");
 			roleRepository.save(roleAdmin);
 
 			
@@ -57,7 +57,9 @@ public class InitDbService {
 			
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			userAdmin.setPassword(encoder.encode("admin"));
-			List<Role> roles = new ArrayList<Role>();
+			
+			//List<Role> roles = new ArrayList<Role>();
+			Set<Role> roles = new HashSet<>();
 			roles.add(roleAdmin);
 			roles.add(roleUser);
 			userAdmin.setRoles(roles);
@@ -70,12 +72,7 @@ public class InitDbService {
 			blogJavavids.setUser(userAdmin);
 			blogRepository.save(blogJavavids);
 			
-			
-			
-			
-			
-			
-		
+
 			/*
 			Item item1 = new Item();
 			item1.setBlog(blogJavavids);

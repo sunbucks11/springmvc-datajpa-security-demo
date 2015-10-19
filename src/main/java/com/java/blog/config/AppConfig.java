@@ -37,14 +37,6 @@ public class AppConfig {
 	@Autowired
 	private Environment env;
 	
-	@Bean
-	public AdminFilter adminFilter() {
-		return new AdminFilter();
-	}
-
-	
-	
-	
 	
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {

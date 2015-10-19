@@ -1,8 +1,8 @@
 package com.java.blog.web.controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -199,11 +199,12 @@ public class AdminFilter implements Filter {
 	}
 
 	private boolean isLoggedinUserHasAdminRole(String username) {
-		List<Role> roles = new ArrayList<Role>();
+		//List<Role> roles = new ArrayList<Role>();
+		Set<Role> roles = new HashSet<>();
 		roles = userService.findOneWithBlogs(username).getRoles();
 		
 		for (Role role : roles) {
-			if (role.getName().contains("ROLE_ADMIN")) {
+			if (role.getRoleName().contains("ROLE_ADMIN")) {
 				return true;
 			}
 		}
