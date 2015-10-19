@@ -164,13 +164,15 @@
 </style>
 
 
-<form class="form-signin" role="form" action="<spring:url value="/j_spring_security_check" />" method="POST">
+<%-- <form class="form-signin" role="form" action="<spring:url value="/j_spring_security_check" />" method="POST"> --%>
+<form:form id="loginForm" method="post" action="${rootURL}login" modelAttribute="user" 
+		class="form-horizontal" role="form" cssStyle="width: 800px; margin: 0 auto;">
 	<h2 class="form-signin-heading">Please sign in</h2>
 	<input type="text" name="j_username" class="form-control" placeholder="Name" required autofocus> 
 	<input type="password" name="j_password" class="form-control" placeholder="Password" required> 
 	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form> 
-
+<!-- </form> --> 
+</form:form>
 
 
 

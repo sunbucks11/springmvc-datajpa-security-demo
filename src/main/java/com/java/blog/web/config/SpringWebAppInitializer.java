@@ -4,12 +4,9 @@
 package com.java.blog.web.config;
 
 import javax.servlet.Filter;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -45,24 +42,10 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 	@Override
     protected Filter[] getServletFilters() {
        return new Filter[]{
-//    		   new AdminFilter(),
+    		   /*new CharacterEncodingFilter(),*/
+    		   new AdminFilter(),
     		   new DelegatingFilterProxy("springSecurityFilterChain"),
     		   new OpenEntityManagerInViewFilter()
     		   };
     } 
-
-//	  @Override
-//	  protected Filter[] getServletFilters() {
-//	    return new Filter[] {
-//	      new AdminFilter();
-//	    };
-//	  }
-	
-	
-	@Override
-	  public void onStartup(ServletContext container) throws ServletException {
-	      container.addFilter("AdminFilter", AdminFilter.class)
-          .addMappingForUrlPatterns(null, false, "/*");
-	  }
-
 }

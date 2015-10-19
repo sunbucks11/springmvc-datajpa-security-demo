@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.java.blog.entity.Role;
 import com.java.blog.service.UserService;
 
-@Component
+//@Component
 public class AdminFilter implements Filter {
 
 	@Autowired
@@ -130,7 +130,9 @@ public class AdminFilter implements Filter {
 				}
 			}
 
-			boolean loggedinUserHasAdminRole = isLoggedinUserHasAdminRole(username);
+			//boolean loggedinUserHasAdminRole = isLoggedinUserHasAdminRole(username);
+			boolean loggedinUserHasAdminRole = true;
+
 
 			if (loggedinUserHasAdminRole && twoFactorAuthenticationEnabled
 					&& someoneIsLoggedIn(session)
@@ -202,6 +204,9 @@ public class AdminFilter implements Filter {
 		//List<Role> roles = new ArrayList<Role>();
 		Set<Role> roles = new HashSet<>();
 		roles = userService.findOneWithBlogs(username).getRoles();
+		//String name = userService.findUserByEmail(username).getName();
+		//roles = userService.findOne(username).getRoles();
+		
 		
 		for (Role role : roles) {
 			if (role.getRoleName().contains("ROLE_ADMIN")) {
