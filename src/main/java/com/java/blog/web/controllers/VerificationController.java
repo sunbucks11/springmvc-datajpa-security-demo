@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.java.blog.entity.User;
 import com.java.blog.service.UserService;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
@@ -62,18 +63,26 @@ public class VerificationController {
 			// Get the secret key from the session , you will get it from the db.
 			String savedSecret = (String) request.getSession().getAttribute("secretKey");
 			String username = null;
+			String emailAddress = null; 
 
 			if (savedSecret == null) {
 
-				UserDetails cud = (UserDetails) sci.getAuthentication()
-						.getPrincipal();
-				username = cud.getUsername();
-				userService.findOne(username).getSecretKey();
+				//UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
+				//username = cud.getUsername();
+				//userService.findOne(username).getSecretKey();
+				
+				UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
+				emailAddress = cud.getUsername();
+				
+				User user = userService.findUserByEmail(emailAddress);
+				username = user.getName();
+				
 
 				GoogleAuthenticatorKey key = TwoFactorAuthController.SecretKey;
 
 				System.out.println("key is: " + key.getKey());
 				savedSecret = key.getKey();
+				user.setSecretKey( key.getKey());
 			}
 
 			boolean result = ga.authorize(savedSecret, code);

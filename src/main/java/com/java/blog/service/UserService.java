@@ -106,8 +106,9 @@ public class UserService
 		userRepository.save(user);
 	}
 
-	public User findOneWithBlogs(String name) {
-		User user = userRepository.findByName(name);
+	public User findOneWithBlogs(String emailAddress) {
+		//User user = userRepository.findByName(name);
+		User user = userRepository.findUserByEmail(emailAddress);
 		return findOneWithBlogs(user.getId());
 	}
 

@@ -62,7 +62,7 @@ h4{
 
 <br /><br />
 
-<form method="post" action="/java-blog-website/ErrorController/Reset">
+<form method="post" action="/springmvc-datajpa-security-demo/ResetController">
     <h4>Click the button below to Reset Two Factor Authentication </h4> 
     <input class="btn btn-lg btn-primary " type="submit" value="Reset">
 </form>

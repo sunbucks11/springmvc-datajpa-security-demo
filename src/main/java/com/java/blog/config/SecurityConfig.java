@@ -55,7 +55,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.csrf().disable()
 			.authorizeRequests()
-				.antMatchers("/login", "/login/form**", "/register", "/logout", "/j_spring_security_check")
+				.antMatchers("/login", 
+						"/login/form**", 
+						"/register", 
+						"/index",
+						"/error",
+						"/reset",
+						"/user-account",
+						"/user-detail",
+						"/user-register",
+						"/users",
+						"/verification",
+						"/logout", 
+						"/j_spring_security_check", 
+						"/springmvc-datajpa-security-demo/TwoFactorAuthController",
+						"/springmvc-datajpa-security-demo/ResetController"
+						)
 				.permitAll()
 				// #4
 				.antMatchers("/admin", "/admin/**").hasRole("ADMIN")
