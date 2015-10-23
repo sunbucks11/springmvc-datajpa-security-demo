@@ -66,11 +66,7 @@ public class VerificationController {
 			String emailAddress = null; 
 
 			if (savedSecret == null) {
-
-				//UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
-				//username = cud.getUsername();
-				//userService.findOne(username).getSecretKey();
-				
+			
 				UserDetails cud = (UserDetails) sci.getAuthentication().getPrincipal();
 				emailAddress = cud.getUsername();
 				

@@ -103,10 +103,10 @@
 </style>
 
 <title>Login</title>
-<link href="${rootURL}resources/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+<%-- <link href="${rootURL}resources/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${rootURL}resources/jquery/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="${rootURL}resources/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript" src="${rootURL}resources/js/app.js"></script>
+<script type="text/javascript" src="${rootURL}resources/js/app.js"></script> --%>
 
 
 		<div class="col-md-6 col-md-offset-2">	
@@ -128,7 +128,7 @@
 			<form:form id="loginForm" method="post" action="${rootURL}login" modelAttribute="user" 
 		class="form-horizontal" role="form" cssStyle="width: 800px; margin: 0 auto;">
 		  <div class="form-group">
-		    <label for="username" class="col-sm-2 control-label">UserName*</label>
+		    <label for="username" class="col-sm-2 control-label">Email Address*</label>
 		    <div class="col-sm-4">
 		      <input type="text" id="username" name="username" class="form-control" placeholder="UserName" required />
 		    </div>

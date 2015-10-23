@@ -26,7 +26,8 @@
 		<intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/account**" access="hasRole('ROLE_USER')" />
 		<form-login login-page="/login.html" />
-		<logout logout-url="/logout" />
+	<!-- 	<logout logout-url="/logout" />  -->
+		<logout logout-url="/logout" logout-success-url="/index"/>
 	</http>
 	
 	

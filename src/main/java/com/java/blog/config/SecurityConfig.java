@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						"/user-register",
 						"/users",
 						"/verification",
-						"/logout", 
+//						"/logout", 
 						"/j_spring_security_check", 
 						"/springmvc-datajpa-security-demo/TwoFactorAuthController",
 						"/springmvc-datajpa-security-demo/ResetController"

@@ -163,7 +163,9 @@ public class AdminFilter implements Filter {
 		if (requestedUri.matches(".*[css|jpg|png|gif|js]")
 				|| requestedUri.contains("/springmvc-datajpa-security-demo/TwoFactorAuthController")
 				|| requestedUri.contains("/verification.html")
-				|| requestedUri.contains("/error.html")) {
+				|| requestedUri.contains("/springmvc-datajpa-security-demo/TwoFactorAuthController")
+				|| requestedUri.contains("/error.html")
+				|| requestedUri.contains("/login.html")) {
 			chain.doFilter(request, response);
 			return;
 		}
@@ -187,6 +189,10 @@ public class AdminFilter implements Filter {
 		
 		if (requestedUri.contains("/logout")) {
 			TwoFactorAuthController.isVerificationRequired = true;
+			session.invalidate();
+			
+			request.getRequestDispatcher("/index").forward(request, response);
+			
 			chain.doFilter(request, response);
 			return;
 		}
