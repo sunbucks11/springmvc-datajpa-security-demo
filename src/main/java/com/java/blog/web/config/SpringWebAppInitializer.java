@@ -43,7 +43,7 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     protected Filter[] getServletFilters() {
        return new Filter[]{
     		   /*new CharacterEncodingFilter(),*/
-    		   new AdminFilter(),
+    		  /* new AdminFilter(),*/
     		   new DelegatingFilterProxy("springSecurityFilterChain"),
     		   new OpenEntityManagerInViewFilter()
     		   };

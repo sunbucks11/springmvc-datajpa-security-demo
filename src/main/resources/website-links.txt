@@ -1,0 +1,68 @@
+SpringMVC4 + Spring Data JPA + SpringSecurity configuration using JavaConfig
+http://www.sivalabs.in/2014/03/springmvc4-spring-data-jpa.html
+
+Spring MVC with basic object persistence using Spring Data JPA and Hibernate
+http://www.luckyryan.com/2013/02/20/spring-mvc-with-basic-persistence-spring-data-jpa-hibernate/
+
+Creating a Custom Login Form
+http://docs.spring.io/spring-security/site/docs/3.2.x/guides/form.html
+
+spring-projects/spring-security-javaconfig
+https://github.com/spring-projects/spring-security-javaconfig
+
+Spring Security Custom Login Form Annotation Example
+http://www.mkyong.com/spring-security/spring-security-custom-login-form-annotation-example/
+
+#############################################
+Spring 4 MVC+AngularJS Example
+http://websystique.com/springmvc/spring-mvc-4-angularjs-example/
+
+CRUD using Spring MVC 4.0 RESTful Web Services and AngularJS
+http://www.programming-free.com/2014/07/crud-springmvc-restful-webservices-angularjs.html
+
+Spring MVC + Maven + Hibernate CRUD Example Complete
+http://shrestha-manoj.blogspot.co.uk/2014/05/spring-mvc-maven-hibernate-crud-example.html
+
+Body onload AngularJS Spring MVC JSON
+http://javahonk.com/body-onload-angularjs-spring-mvc-json/
+
+Spring MVC Server Side Pagination ng-grid AngularJS
+http://javahonk.com/spring-mvc-server-side-pagination-ng-grid-angularjs/
+
+Combining java and Node.js through redis pub/sub and a json remote interface
+http://www.gridshore.nl/2011/07/28/combining-java-and-node-js-through-redis-pubsub-and-a-json-remote-interface/
+
+
+
+#############################################
+Spring Data JPA Tutorial Part Three: Custom Queries with Query Methods
+http://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-three-custom-queries-with-query-methods/
+
+Spring Data JPA Tutorial: CRUD
+http://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-two-crud/
+
+Spring Data JPA Tutorial: Creating Database Queries With Querydsl
+http://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-five-querydsl/
+
+Spring Data JPA Tutorial: Sorting
+http://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-six-sorting/
+
+##############################################
+
+Connection authorization failure using Maven SQL plugin
+http://stackoverflow.com/questions/31523151/connection-authorization-failure-using-maven-sql-plugin
+
+Errors using Maven Mojo sql:execute
+http://stackoverflow.com/questions/8394951/errors-using-maven-mojo-sqlexecute
+
+SQL Maven Plugin (MySQL)
+http://hmkcode.com/sq-maven-plugin-mysql/
+
+3. Repository
+http://www.springbyexample.org/examples/spring-data-jpa-repository.html
+
+
+
+
+
+

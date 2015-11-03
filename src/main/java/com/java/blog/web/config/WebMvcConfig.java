@@ -60,10 +60,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter
         tilesConfigurer.setCheckRefresh(true);
         return tilesConfigurer;
     }
-    
-    
-    
-    
 	
 
 	@Bean

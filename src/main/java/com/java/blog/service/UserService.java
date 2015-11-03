@@ -100,15 +100,15 @@ public class UserService
 
 		//List<Role> roles = new ArrayList<Role>();
 		Set<Role> roles = new HashSet<>();
-		//roles.add(roleRepository.findByName("ROLE_USER"));
+		roles.add(roleRepository.findByName("ROLE_USER"));
 		//roles.add(roleRepository.findOne("ROLE_USER"));
 		user.setRoles(roles);
 		userRepository.save(user);
 	}
 
-	public User findOneWithBlogs(String emailAddress) {
-		//User user = userRepository.findByName(name);
-		User user = userRepository.findUserByEmail(emailAddress);
+	public User findOneWithBlogs(String name) {
+		User user = userRepository.findByName(name);
+		//User user = userRepository.findUserByEmail(emailAddress);
 		return findOneWithBlogs(user.getId());
 	}
 

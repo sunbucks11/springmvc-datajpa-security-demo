@@ -10,6 +10,7 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.java.blog.entity.Role;
 import com.java.blog.entity.User;
@@ -18,6 +19,7 @@ import com.java.blog.entity.User;
  * @author Semir
  *
  */
+@Transactional
 public class SecurityUser extends User implements UserDetails
 {
 

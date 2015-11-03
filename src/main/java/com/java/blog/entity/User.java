@@ -11,14 +11,15 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 import com.java.blog.annotation.UniqueUsername;
 
@@ -27,96 +28,76 @@ import com.java.blog.annotation.UniqueUsername;
 @Table(name="USERS")
 public class User 
 {
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	
-	@Size(min=3, message="Name must be at least 3 characters!")
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	@Size(min = 3, message = "Name must be at least 3 characters!")
 	@Column(unique = true)
-	@UniqueUsername(message="Such username already exists!")
+	@UniqueUsername(message = "Such username already exists!")
 	private String name;
-	
-	@Column(nullable=false, unique=true)
+
+	@Size(min = 1, message = "Invalid email address!")
+	@Email(message = "Invalid email address!")
 	private String email;
-	
-	@Column(nullable=false)
-	@Size(min=5, message="Password must be at least 5 characters!")
+
+	@Size(min = 5, message = "Name must be at least 5 characters!")
 	private String password;
+
+	private boolean enabled;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="user_id")
-	private Set<Role> roles = new HashSet<>();
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-	private List<Blog> blogs;
-	
-	
-		
 	private Date dob;
-	
-	
+
 	private String secretKey;
 	private Boolean twoFactorAuthInitialised;
+	private boolean isResetTwoFactorAuth;
 	private boolean isAuthenticated; 
 	private boolean isVerified; 
 	private boolean isVerifiedError; 
-	private boolean isResetTwoFactorAuth;
-	private boolean enabled;
-	
-	public boolean isAuthenticated() {
-		return isAuthenticated;
+
+
+	@ManyToMany
+	@JoinTable
+	//private List<Role> roles;
+	private Set<Role> roles = new HashSet<>();
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<Blog> blogs;
+
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setAuthenticated(boolean isAuthenticated) {
-		this.isAuthenticated = isAuthenticated;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	public boolean isVerified() {
-		return isVerified;
+	public List<Blog> getBlogs() {
+		return blogs;
 	}
 
-	public void setVerified(boolean isVerified) {
-		this.isVerified = isVerified;
+	public void setBlogs(List<Blog> blogs) {
+		this.blogs = blogs;
 	}
 
-	public boolean isVerifiedError() {
-		return isVerifiedError;
-	}
-
-	public void setVerifiedError(boolean isVerifiedError) {
-		this.isVerifiedError = isVerifiedError;
-	}
-
-	public boolean isResetTwoFactorAuth() {
-		return isResetTwoFactorAuth;
-	}
-
-	public void setResetTwoFactorAuth(boolean isResetTwoFactorAuth) {
-		this.isResetTwoFactorAuth = isResetTwoFactorAuth;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 	
 	
-	public User() {
+
+/*	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}*/
+	public void setRoles(Set<Role> set) {
+		this.roles = set;
 	}
 
-	public User(int id, String name, String email, String password, Date dob) {
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.dob = dob;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email
-				+ ", dob=" + dob + "]";
-	}
-
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -143,21 +124,13 @@ public class User
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public Date getDob() {
 		return dob;
 	}
 
 	public void setDob(Date dob) {
 		this.dob = dob;
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
 	}
 
 	public String getSecretKey() {
@@ -176,20 +149,35 @@ public class User
 		this.twoFactorAuthInitialised = twoFactorAuthInitialised;
 	}
 	
-
-	public List<Blog> getBlogs() {
-		return blogs;
+	public boolean isResetTwoFactorAuth() {
+		return isResetTwoFactorAuth;
 	}
 
-	public void setBlogs(List<Blog> blogs) {
-		this.blogs = blogs;
+	public void setResetTwoFactorAuth(boolean isResetTwoFactorAuth) {
+		this.isResetTwoFactorAuth = isResetTwoFactorAuth;
 	}
 	
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isAuthenticated() {
+		return isAuthenticated;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setAuthenticated(boolean isAuthenticated) {
+		this.isAuthenticated = isAuthenticated;
+	}
+
+	public boolean isVerified() {
+		return isVerified;
+	}
+
+	public void setVerified(boolean isVerified) {
+		this.isVerified = isVerified;
+	}
+
+	public boolean isVerifiedError() {
+		return isVerifiedError;
+	}
+
+	public void setVerifiedError(boolean isVerifiedError) {
+		this.isVerifiedError = isVerifiedError;
 	}
 }

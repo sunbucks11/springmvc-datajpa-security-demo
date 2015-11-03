@@ -33,10 +33,8 @@ public class InitDbService {
 	@PostConstruct
 	public void init() {
 		
-		//if (roleRepository.findByName("ROLE_ADMIN") == null) {
-		if (roleRepository.findOne(3) == null) {
+		if (roleRepository.findByName("ROLE_ADMIN") == null) {
 			Role roleUser = new Role();
-			//roleUser.setName("ROLE_USER");
 			roleUser.setRoleName("ROLE_USER");
 			roleRepository.save(roleUser);
 
@@ -49,14 +47,22 @@ public class InitDbService {
 			
 			User userAdmin = new User();
 			userAdmin.setEnabled(true);
-			userAdmin.setName("admin");
-			userAdmin.setEmail("admin@test.com");
+			//userAdmin.setName("admin");
+			//userAdmin.setEmail("admin@test.com");
+			userAdmin.setName("Administrator");
+			userAdmin.setEmail("admin@gmail.com");
 			
 			userAdmin.setResetTwoFactorAuth(false);
+			userAdmin.setTwoFactorAuthInitialised(false);
+			userAdmin.setVerified(false);
+			userAdmin.setVerifiedError(false);
+			userAdmin.setAuthenticated(false);
 			
 			
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			userAdmin.setPassword(encoder.encode("admin"));
+			//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			//userAdmin.setPassword(encoder.encode("admin"));
+			//userAdmin.setPassword(encoder.encode("admin123"));
+			userAdmin.setPassword("admin");
 			
 			//List<Role> roles = new ArrayList<Role>();
 			Set<Role> roles = new HashSet<>();
@@ -67,8 +73,7 @@ public class InitDbService {
 
 			Blog blogJavavids = new Blog();
 			blogJavavids.setName("JavaVids");
-			blogJavavids
-					.setUrl("http://feeds.feedburner.com/javavids?format=xml");
+			blogJavavids.setUrl("http://feeds.feedburner.com/javavids?format=xml");
 			blogJavavids.setUser(userAdmin);
 			blogRepository.save(blogJavavids);
 			
