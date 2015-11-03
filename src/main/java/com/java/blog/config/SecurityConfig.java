@@ -1,3 +1,5 @@
+//Source: http://websystique.com/spring-security/spring-security-4-password-encoder-bcrypt-example-with-hibernate/
+
 /**
  * 
  */
@@ -6,16 +8,18 @@ package com.java.blog.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 //import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.java.blog.web.controllers.AdminFilter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * @author Semir
@@ -26,12 +30,37 @@ import com.java.blog.web.controllers.AdminFilter;
 // @EnableGlobalMethodSecurity(prePostEnabled = true)
 // @ImportResource("classpath:applicationContext-security.xml")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
 	@Autowired
 	private DataSource dataSource;
 
 	@Autowired
+	@Qualifier("customUserDetailsService")
 	private CustomUserDetailsService customUserDetailsService;
+	
+    
+   @Autowired
+   public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+       auth.userDetailsService(customUserDetailsService);
+       auth.authenticationProvider(authenticationProvider());
+   }
 
+   @Bean
+   public DaoAuthenticationProvider authenticationProvider() {
+       DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+       authenticationProvider.setUserDetailsService(customUserDetailsService);
+       authenticationProvider.setPasswordEncoder(passwordEncoder());
+       return authenticationProvider;
+   }
+   
+	@Bean
+	public PasswordEncoder passwordEncoder(){
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder;
+	}
+   
+   
+   
 	@Override
 	protected void configure(AuthenticationManagerBuilder registry)
 			throws Exception {
@@ -42,6 +71,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 */
 
 		// registry.jdbcAuthentication().dataSource(dataSource);
+		
+		registry.jdbcAuthentication().dataSource(dataSource)
+		.passwordEncoder(passwordEncoder())
+		.usersByUsernameQuery("select email, password, true from users where email = ?")	
+		.authoritiesByUsernameQuery("select u.email, r.role_name from users u, roles r where u.email = ? and u.id = r.user_id");
+		
 		registry.userDetailsService(customUserDetailsService);
 	}
 
@@ -87,4 +122,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				//.loginProcessingUrl("/j_spring_security_check").failureUrl("/login/form?error")
 				.permitAll(); // #5
 	}
+	
+	
+
 }

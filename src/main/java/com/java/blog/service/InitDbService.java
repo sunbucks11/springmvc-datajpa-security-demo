@@ -59,10 +59,10 @@ public class InitDbService {
 			userAdmin.setAuthenticated(false);
 			
 			
-			//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			//userAdmin.setPassword(encoder.encode("admin"));
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			userAdmin.setPassword(encoder.encode("admin"));
 			//userAdmin.setPassword(encoder.encode("admin123"));
-			userAdmin.setPassword("admin");
+			//userAdmin.setPassword("admin");
 			
 			//List<Role> roles = new ArrayList<Role>();
 			Set<Role> roles = new HashSet<>();

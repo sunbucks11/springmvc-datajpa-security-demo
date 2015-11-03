@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.java.blog.entity.Role;
@@ -24,13 +28,22 @@ public class SecurityUser extends User implements UserDetails
 {
 
 	private static final long serialVersionUID = 1L;
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	public SecurityUser(User user) {
+		
+			
+	  System.out.println(user);
+
 		if(user != null)
 		{
 			this.setId(user.getId());
 			this.setName(user.getName());
 			this.setEmail(user.getEmail());
 			this.setPassword(user.getPassword());
+			
+			System.out.println(this.getPassword());
+			
 			this.setDob(user.getDob());
 			this.setRoles(user.getRoles());
 		}		
