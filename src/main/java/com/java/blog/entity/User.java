@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -21,8 +22,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.java.blog.annotation.UniqueUsername;
+//import com.websystique.springsecurity.model.UserProfile;
+
 
 
 @Entity
@@ -50,12 +54,34 @@ public class User
 	private Date dob;
 
 	private String secretKey;
-	private Boolean twoFactorAuthInitialised;
+	private boolean twoFactorAuthInitialised;
 	private boolean isResetTwoFactorAuth;
 	private boolean isAuthenticated; 
 	private boolean isVerified; 
 	private boolean isVerifiedError; 
 
+	
+	@NotEmpty
+	@Column(name="STATE", nullable=false)
+	private String state=State.ACTIVE.getState();
+	
+	
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "APP_USER_USER_PROFILE", 
+             joinColumns = { @JoinColumn(name = "USER_ID") }, 
+             inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
+	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+	
+	
+
+	public Set<UserProfile> getUserProfiles() {
+		return userProfiles;
+	}
+
+	public void setUserProfiles(Set<UserProfile> userProfiles) {
+		this.userProfiles = userProfiles;
+	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable
@@ -180,5 +206,13 @@ public class User
 
 	public void setVerifiedError(boolean isVerifiedError) {
 		this.isVerifiedError = isVerifiedError;
+	}
+	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 }

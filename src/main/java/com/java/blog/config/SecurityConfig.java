@@ -18,8 +18,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.java.blog.service.CustomUserDetailsService;
 
 /**
  * @author Semir
@@ -36,49 +39,48 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	@Qualifier("customUserDetailsService")
-	private CustomUserDetailsService customUserDetailsService;
+	UserDetailsService userDetailsService;
 	
     
-   @Autowired
-   public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-       auth.userDetailsService(customUserDetailsService);
-       auth.authenticationProvider(authenticationProvider());
-   }
-
-   @Bean
-   public DaoAuthenticationProvider authenticationProvider() {
-       DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-       authenticationProvider.setUserDetailsService(customUserDetailsService);
-       authenticationProvider.setPasswordEncoder(passwordEncoder());
-       return authenticationProvider;
-   }
-   
+	@Autowired
+	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService);
+		auth.authenticationProvider(authenticationProvider());
+	}
+	
 	@Bean
-	public PasswordEncoder passwordEncoder(){
-		PasswordEncoder encoder = new BCryptPasswordEncoder();
-		return encoder;
+	public PasswordEncoder passwordEncoder() {
+	    return new BCryptPasswordEncoder();
 	}
-   
-   
-   
-	@Override
-	protected void configure(AuthenticationManagerBuilder registry)
-			throws Exception {
-		/*
-		 * registry .inMemoryAuthentication() .withUser("siva") // #1
-		 * .password("siva") .roles("USER") .and() .withUser("admin") // #2
-		 * .password("admin") .roles("ADMIN","USER");
-		 */
 
-		// registry.jdbcAuthentication().dataSource(dataSource);
-		
-		registry.jdbcAuthentication().dataSource(dataSource)
-		.passwordEncoder(passwordEncoder())
-		.usersByUsernameQuery("select email, password, true from users where email = ?")	
-		.authoritiesByUsernameQuery("select u.email, r.role_name from users u, roles r where u.email = ? and u.id = r.user_id");
-		
-		registry.userDetailsService(customUserDetailsService);
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+	    DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+	    authenticationProvider.setUserDetailsService(userDetailsService);
+	    authenticationProvider.setPasswordEncoder(passwordEncoder());
+	    return authenticationProvider;
 	}
+      
+   
+   
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder registry)
+//			throws Exception {
+//		/*
+//		 * registry .inMemoryAuthentication() .withUser("siva") // #1
+//		 * .password("siva") .roles("USER") .and() .withUser("admin") // #2
+//		 * .password("admin") .roles("ADMIN","USER");
+//		 */
+//
+//		// registry.jdbcAuthentication().dataSource(dataSource);
+//		
+//		registry.jdbcAuthentication().dataSource(dataSource)
+//		.passwordEncoder(passwordEncoder())
+//		.usersByUsernameQuery("select email, password, true from users where email = ?")	
+//		.authoritiesByUsernameQuery("select u.email, r.role_name from users u, roles r where u.email = ? and u.id = r.user_id");
+//		
+//		registry.userDetailsService(customUserDetailsService);
+//	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
@@ -109,6 +111,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				// #4
 				.antMatchers("/admin", "/admin/**").hasRole("ADMIN")
+				.antMatchers("/admin/**","/newuser").access("hasRole('ADMIN')")
+			  	.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
 				// #6
 				.anyRequest().authenticated()
 				// 7

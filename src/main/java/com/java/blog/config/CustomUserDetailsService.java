@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.java.blog.config;
+/*package com.java.blog.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,10 +10,7 @@ import com.java.blog.entity.User;
 import com.java.blog.service.UserService;
 import com.java.blog.web.config.SecurityUser;
 
-/**
- * @author Semir
- *
- */
+
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -33,5 +27,4 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 		return new SecurityUser(user);
 	}
-
-}
+}*/

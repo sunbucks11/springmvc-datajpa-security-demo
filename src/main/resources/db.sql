@@ -15,3 +15,17 @@ INSERT INTO roles (role_id,role_name,user_id) VALUES
 
 INSERT INTO users (id,dob,email,enabled,isAuthenticated,isResetTwoFactorAuth,isVerified,isVerifiedError,name,password,secretKey,twoFactorAuthInitialised) VALUES 
 (1,NULL,'admin@gmail.com',false,false,false,false,false,'Administrator','admin123',NULL,false);
+
+
+
+
+use springmvc_datajpa_security_demo;
+DROP TABLE `springmvc_datajpa_security_demo`.`users_roles`;
+DROP TABLE `springmvc_datajpa_security_demo`.`item`;
+DROP TABLE `springmvc_datajpa_security_demo`.`blog`;
+DROP TABLE `springmvc_datajpa_security_demo`.`roles`;
+DROP TABLE `springmvc_datajpa_security_demo`.`users`;
+
+
+delete from roles where user_id = 1;
+delete from users where id = 1;

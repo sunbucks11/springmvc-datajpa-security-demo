@@ -49,9 +49,6 @@ public class UserController
 		return new Blog();
 	}
 	
-	
-	
-	
 
 	@RequestMapping("/account")
 	public String account(Model model, Principal principal) {
