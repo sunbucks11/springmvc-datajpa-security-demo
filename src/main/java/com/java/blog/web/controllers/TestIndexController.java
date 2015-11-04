@@ -11,6 +11,7 @@ public class TestIndexController {
 	  @RequestMapping(method = RequestMethod.GET)
 	    public String getIndexPage() {
 	        return "views/UserManagement";
+	      // return "views/index";
 	    }
 
 }

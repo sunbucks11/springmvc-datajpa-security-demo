@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-  <head>  
-    <title>AngularJS $http Example</title>  
-    <style>
+
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="webjars/bootstrap/3.2.0/css/bootstrap.css">
+    <link rel="stylesheet" href="webjars/bootstrap-material-design/0.2.1/css/material.css">
+    <title>AngularJS</title>
+    
+     <style>
       .username.ng-valid {
           background-color: lightgreen;
       }
@@ -25,10 +30,55 @@
       }
 
     </style>
+    
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
-  </head>
-  <body ng-app="myApp" class="ng-cloak">
+    
+</head>
+<body ng-controller="UsersController">
+
+<div class="row">
+    <br>
+    <div class="container">
+        <div id="userList" class="col-sm-offset-1 col-sm-10">
+            <div class="input-group">
+                <input class="form-control" id="search" name="search" placeholder="Search for" ng-model="query"
+                       required="required"/>
+              <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default">
+                      <i class="glyphicon glyphicon-search"></i>
+                  </button>
+              </span>
+            </div>
+            <div class="list-group">
+                <div class="list-group-item">
+                    <div ng-repeat="user in users | filter:query" class="list-group-item" style="margin-top:16px">
+                        <div class="row-picture">
+                            <img class="circle"
+                                 src="http://i.forbesimg.com/media/lists/people/{{user.firstName | lowercase}}-{{user.familyName | lowercase}}_50x50.jpg"
+                                 alt="icon">
+                        </div>
+                        <div class="row-content">
+                            <h4 class="list-group-item-heading">{{user.firstName}} {{user.familyName}}</h4>
+
+                            <p class="list-group-item-text"><i class="glyphicon glyphicon-envelope"></i> {{user.email}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
       <div class="generic-container" ng-controller="UserController as ctrl">
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">User Registration Form </span></div>
@@ -110,10 +160,41 @@
               </div>
           </div>
       </div>
-      
-     <script type="text/javascript" src=<c:url value='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js' />"></script>
-      <script type="text/javascript" src="<c:url value='/static/js/app.js' />"></script>
-      <script type="text/javascript" src="<c:url value='/static/js/service/user_service.js' />"></script>
-      <script type="text/javascript" src="<c:url value='/static/js/controller/user_controller.js' />"></script>
-  </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+
+<script type="text/javascript" src="webjars/jquery/2.1.1/jquery.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.3.8/angular.min.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.3.8/angular-resource.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap-material-design/0.2.1/js/material.js"></script>
+<script type="text/javascript" src="resources/js/app.js"></script>
+
+
+ <script type="text/javascript" src="<c:url value='/static/js/app.js' />"></script>
+ <script type="text/javascript" src="<c:url value='/static/js/service/user_service.js' />"></script>
+ <script type="text/javascript" src="<c:url value='/static/js/controller/user_controller.js' />"></script>
+
+
+</body>
 </html>

@@ -89,7 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 		http.csrf().disable()
 			.authorizeRequests()
 				.antMatchers("/login", 
@@ -106,7 +106,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //						"/logout", 
 						"/j_spring_security_check", 
 						"/springmvc-datajpa-security-demo/TwoFactorAuthController",
-						"/springmvc-datajpa-security-demo/ResetController"
+						"/springmvc-datajpa-security-demo/ResetController",
+						"/resources/**",
+						"/static/**"
 						)
 				.permitAll()
 				// #4
