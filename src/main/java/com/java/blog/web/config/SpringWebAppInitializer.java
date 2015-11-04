@@ -6,12 +6,11 @@ package com.java.blog.web.config;
 import javax.servlet.Filter;
 
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.java.blog.config.AppConfig;
-import com.java.blog.web.controllers.AdminFilter;
+import com.java.blog.config.CORSFilter;
 
 /**
  * @author Semir
@@ -44,6 +43,7 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
        return new Filter[]{
     		   /*new CharacterEncodingFilter(),*/
     		  /* new AdminFilter(),*/
+    		   new CORSFilter(),
     		   new DelegatingFilterProxy("springSecurityFilterChain"),
     		   new OpenEntityManagerInViewFilter()
     		   };
