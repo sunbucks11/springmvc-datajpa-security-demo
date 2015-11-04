@@ -116,18 +116,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// #6
 				.anyRequest().authenticated()
 				// 7
-				.and()
+		.and()
 			.formLogin()
 				// #8
 				//.loginPage("/login/form")
 				.loginPage("/login.html")
 				// #9
 				.loginProcessingUrl("/login")
-				.failureUrl("/login/form?error")
+				//.failureUrl("/login/form?error")
+//				.failureUrl("/j_spring_security_check")
 				//.loginProcessingUrl("/j_spring_security_check").failureUrl("/login/form?error")
-				.permitAll(); // #5
+				.permitAll() // #5
+		.and()
+			    .logout()
+			    .logoutSuccessUrl("/");
 	}
-	
-	
 
 }
