@@ -1,9 +1,9 @@
 package com.java.blog.entity;
 
 public enum UserProfileType {
-	USER("USER"),
-	DBA("DBA"),
-	ADMIN("ADMIN");
+	USER("ROLE_USER"),
+	DBA("ROLE_DBA"),
+	ADMIN("ROLE_ADMIN");
 	
 	String userProfileType;
 	

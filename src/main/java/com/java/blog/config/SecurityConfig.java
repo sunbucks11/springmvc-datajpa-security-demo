@@ -93,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 			.authorizeRequests()
 				.antMatchers("/login", 
-						"/login/form**", 
+//						"/login/form**", 
 						"/register", 
 						"/index",
 						"/error",
@@ -122,7 +122,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				//.loginPage("/login/form")
 				.loginPage("/login.html")
 				// #9
-				.loginProcessingUrl("/login").failureUrl("/login/form?error")
+				.loginProcessingUrl("/login")
+				.failureUrl("/login/form?error")
 				//.loginProcessingUrl("/j_spring_security_check").failureUrl("/login/form?error")
 				.permitAll(); // #5
 	}
