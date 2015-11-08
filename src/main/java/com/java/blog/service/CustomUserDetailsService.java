@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.java.blog.entity.Role;
 import com.java.blog.entity.User;
-import com.java.blog.entity.UserProfile;
+
 
 /*import com.websystique.springsecurity.model.User;
 import com.websystique.springsecurity.model.UserProfile;*/
@@ -26,10 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 
 	@Autowired
 	private UserService userService;
-	
-//	 @Autowired
-//	 UserProfileService userProfileService;
-	 
+		 
 	
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String email)

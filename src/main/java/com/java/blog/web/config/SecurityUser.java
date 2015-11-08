@@ -1,17 +1,12 @@
-/**
- * 
- */
+
 package com.java.blog.web.config;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,10 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.java.blog.entity.Role;
 import com.java.blog.entity.User;
 
-/**
- * @author Semir
- *
- */
+
 @Transactional
 public class SecurityUser extends User implements UserDetails
 {

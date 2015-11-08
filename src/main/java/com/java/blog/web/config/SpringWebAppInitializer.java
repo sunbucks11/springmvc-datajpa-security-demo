@@ -10,7 +10,10 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.java.blog.config.AppConfig;
-import com.java.blog.config.CORSFilter;
+
+import calories.tracker.config.root.DevelopmentConfiguration;
+import calories.tracker.config.root.RootContextConfig;
+import calories.tracker.config.root.TestConfiguration;
 
 /**
  * @author Semir
@@ -24,7 +27,7 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 	{
 		return new Class<?>[] { AppConfig.class};
 	}
-
+	
 	@Override
 	protected Class<?>[] getServletConfigClasses()
 	{
@@ -43,7 +46,6 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
        return new Filter[]{
     		   /*new CharacterEncodingFilter(),*/
     		  /* new AdminFilter(),*/
-    		   new CORSFilter(),
     		   new DelegatingFilterProxy("springSecurityFilterChain"),
     		   new OpenEntityManagerInViewFilter()
     		   };

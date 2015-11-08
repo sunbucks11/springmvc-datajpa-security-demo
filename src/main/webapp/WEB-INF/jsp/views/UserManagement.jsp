@@ -111,9 +111,16 @@
           </div>
       </div>
       
-     <script type="text/javascript" src=<c:url value='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js' />"></script>
+      <script type="text/javascript" src=<c:url value='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js' />"></script>
       <script type="text/javascript" src="<c:url value='/static/js/app.js' />"></script>
       <script type="text/javascript" src="<c:url value='/static/js/service/user_service.js' />"></script>
       <script type="text/javascript" src="<c:url value='/static/js/controller/user_controller.js' />"></script>
+      
+<%--       <script src="<c:url value='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js' />"></script>
+      <script src="<c:url value='/static/js/app.js' />"></script>
+      <script src="<c:url value='/static/js/service/user_service.js' />"></script>
+      <script src="<c:url value='/static/js/controller/user_controller.js' />"></script>
+       --%>
+      
   </body>
 </html>
