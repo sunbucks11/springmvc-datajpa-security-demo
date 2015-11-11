@@ -23,7 +23,7 @@ import com.java.blog.entity.User;
 import com.java.blog.exception.RssException;
 import com.java.blog.service.BlogService;
 import com.java.blog.service.UserService;
-import com.java.blog.web.config.SecurityUser;
+import com.java.blog.config.security.SecurityUser;
 
 /**
  * @author Siva

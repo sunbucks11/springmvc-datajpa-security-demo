@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.java.blog.web.config;
 
 import java.util.Properties;

@@ -3,17 +3,12 @@
  */
 package com.java.blog.web.config;
 
-import javax.servlet.Filter;
-
-import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
-import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.java.blog.config.AppConfig;
+import com.java.blog.config.security.SecurityConfig;
 
-import calories.tracker.config.root.DevelopmentConfiguration;
-import calories.tracker.config.root.RootContextConfig;
-import calories.tracker.config.root.TestConfiguration;
+
 
 /**
  * @author Semir
@@ -25,7 +20,10 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 	@Override
 	protected Class<?>[] getRootConfigClasses()
 	{
-		return new Class<?>[] { AppConfig.class};
+		return new Class<?>[] { AppConfig.class, SecurityConfig.class};
+		
+		
+		
 	}
 	
 	@Override
@@ -41,13 +39,15 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 		return new String[] { "/" };
 	}
 
+/*
 	@Override
     protected Filter[] getServletFilters() {
        return new Filter[]{
-    		   /*new CharacterEncodingFilter(),*/
-    		  /* new AdminFilter(),*/
+    		   //new CharacterEncodingFilter(),
+    		  // new AdminFilter(),
     		   new DelegatingFilterProxy("springSecurityFilterChain"),
     		   new OpenEntityManagerInViewFilter()
     		   };
     } 
+    */
 }

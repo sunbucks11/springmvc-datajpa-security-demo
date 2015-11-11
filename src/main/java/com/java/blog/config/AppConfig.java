@@ -20,14 +20,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.java.blog.web.controllers.AdminFilter;
-
 /**
  * @author Semir
  *
  */
 @Configuration
-@ComponentScan(basePackages = { "com.java.blog" }, excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = { "com.java.blog.web.*" }))
+@ComponentScan(basePackages = { "com.java.blog"}, excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = { "com.java.blog.web.*" }))
 @PropertySource(value = { "classpath:application.properties" })
 @EnableScheduling
 @EnableAspectJAutoProxy
